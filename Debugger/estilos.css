@@ -1,0 +1,49 @@
+body{
+  text-align: center;
+}
+
+.botones a{
+  margin: 3px;
+  padding: 10px;
+  border: 1px solid black;
+  /* display: inline-block; */
+  font-size: 18px;
+
+}
+
+.datos{
+   font-size: 14px;
+}
+
+.columna{
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid black;
+  display: inline-block;
+  vertical-align: top;
+  min-height: 220px;
+  min-width: 180px;
+}
+
+.var{
+  text-align: left;
+  font-weight: bold;
+}
+
+.etapa{
+  background: rgb(194, 215, 233);
+}
+
+.noenter{
+  display: inline-block;
+}
+
+.etiqueta{
+  width: auto;
+  height: auto;
+  padding: 3px;
+  border: 1px solid blue;
+  background: rgb(193, 227, 230);
+  border-radius: 3px;
+  font-family: Arial;
+}

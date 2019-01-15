@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>TPF ARQUITECTURA</title>
+    <link rel="stylesheet" href="./estilos.css">
+    <script src="./angular.min.js"></script>
+    <script src="./app.js"></script>
+  </head>
+
+  <body ng-controller="appController" ng-keypress="detectarTecla($event)">
+
+    <br>
+
+    <div class="botones">
+      <a href="#" ng-click="prevStep()">previo</a>
+      <a href="#" ng-repeat="step in steps" ng-click="verStep(step)" ng-style="obtenerEstilo(step)"
+      >{{step}}</a>
+      <a href="#" ng-click="sigStep()">siguiente</a>
+    </div>
+
+
+
+    <br>
+    <div class="datos">
+
+      <br>
+      <div class="clock">
+        clock: {{data.clocks}}
+      </div>
+
+      <!-- _________________________LATCHS_______________________________ -->
+
+      <div class="columna ifid">
+        <div class="etapa">IFID</div>
+
+        <div class="dato">
+          <div class="var">in_if_add:</div>
+          <div class="valor">{{data.if.out_if_add}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_instruction:</div>
+          <div class="valor">{{data.if.out_instruction}}</div>
+        </div>
+
+        <!-- <br>
+
+        <div class="dato">
+          <div class="var">out_ifid_add:</div>
+          <div class="valor">{{data.ifid.out_ifid_add}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_ifid_instruction:</div>
+          <div class="valor">{{data.ifid.out_ifid_instruction}}</div>
+        </div> -->
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna idex">
+        <div class="etapa">IDEX</div>
+
+
+        <div class="dato">
+          <div class="var">in_opcode:</div>
+          <div class="valor noenter">{{data.id.out_opcode}}</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00000101">BNE</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00000100">BEQ</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00100011">LW</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00101011">SW</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00001000">ADDI</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00001100">ANDI</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00001101">ORI</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00001110">XORI</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00001111">LUI</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00001010">SLTI</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00000010">J</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00000011">JAL</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00000000">Type-R</div>
+          <div class="etiqueta noenter" ng-if="data.id.out_opcode==00111111">HLT</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_id_registerRs:</div>
+          <div class="valor">{{data.id.out_id_registerRs}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_id_registertRt:</div>
+          <div class="valor">{{data.id.out_id_registertRt}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_id_registerRd:</div>
+          <div class="valor">{{data.id.out_id_registerRd}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_read_data_1:</div>
+          <div class="valor">{{data.id.out_read_data_1}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_read_data_2:</div>
+          <div class="valor">{{data.id.out_read_data_2}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_id_sign:</div>
+          <div class="valor">{{data.id.out_id_sign}}</div>
+        </div>
+
+        <!-- <br>
+
+        <div class="dato">
+          <div class="var">out_idex_read_data_1:</div>
+          <div class="valor">{{data.idex.out_idex_read_data_1}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_idex_read_data_2:</div>
+          <div class="valor">{{data.idex.out_idex_read_data_2}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_idex_sign:</div>
+          <div class="valor">{{data.idex.out_idex_sign}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_idex_opcode:</div>
+          <div class="valor">{{data.idex.out_idex_opcode}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_idex_registerRs:</div>
+          <div class="valor">{{data.idex.out_idex_registerRs}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_idex_registerRt:</div>
+          <div class="valor">{{data.idex.out_idex_registerRt}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_idex_registerRd:</div>
+          <div class="valor">{{data.idex.out_idex_registerRd}}</div>
+        </div> -->
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna exmem">
+        <div class="etapa">EXMEM</div>
+
+        <div class="dato">
+          <div class="var">in_alu_result:</div>
+          <div class="valor">{{data.ex.out_alu_result}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_ex_read_data_2:</div>
+          <div class="valor">{{data.ex.out_ex_read_data_2}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_ex_write_register:</div>
+          <div class="valor">{{data.ex.out_ex_write_register}}</div>
+        </div>
+
+        <!-- <br>
+
+        <div class="dato">
+          <div class="var">out_exmem_alu_result:</div>
+          <div class="valor">{{data.exmem.out_exmem_alu_result}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">in_exmem_read_data2:</div>
+          <div class="valor">{{data.exmem.in_exmem_read_data2}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_exmem_write_register:</div>
+          <div class="valor">{{data.exmem.out_exmem_write_register}}</div>
+        </div> -->
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna memwb">
+        <div class="etapa">MEMWB</div>
+
+        <div class="dato">
+         <div class="var">in_mem_alu_result:</div>
+         <div class="valor">{{data.mem.out_mem_alu_result}}</div>
+       </div>
+
+       <div class="dato">
+         <div class="var">in_read_data:</div>
+         <div class="valor">{{data.mem.out_read_data}}</div>
+       </div>
+
+       <div class="dato">
+         <div class="var">in_mem_write_register:</div>
+         <div class="valor">{{data.mem.out_mem_write_register}}</div>
+       </div>
+
+       <!-- <br>
+
+        <div class="dato">
+          <div class="var">out_memwb_write_register:</div>
+          <div class="valor">{{data.memwb.out_memwb_write_register}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_memwb_read_data:</div>
+          <div class="valor">{{data.memwb.out_memwb_read_data}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_memwb_alu_result:</div>
+          <div class="valor">{{data.memwb.out_memwb_alu_result}}</div>
+        </div> -->
+
+      </div>
+
+      <br>
+      <!-- _____________________________ETAPAS_______________________________ -->
+
+      <div class="columna if">
+        <div class="etapa">IF</div>
+
+        <!-- <div class="dato">
+          <div class="var">out_if_add:</div>
+          <div class="valor">{{data.if.out_if_add}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_instruction:</div>
+          <div class="valor">{{data.if.out_instruction}}</div>
+        </div> -->
+
+        <div class="dato">
+          <div class="var">pc:</div>
+          <div class="valor">{{data.if.pc}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">instructions:</div>
+          <div class="valor" ng-repeat="r in data.if.instructions track by $index">{{$index+": "+r}}</div>
+        </div>
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna id">
+        <div class="etapa">ID</div>
+
+        <!-- <div class="dato">
+          <div class="var">out_opcode:</div>
+          <div class="valor">{{data.id.out_opcode}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_id_registerRs:</div>
+          <div class="valor">{{data.id.out_id_registerRs}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_id_registertRt:</div>
+          <div class="valor">{{data.id.out_id_registertRt}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_id_registerRd:</div>
+          <div class="valor">{{data.id.out_id_registerRd}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_read_data_1:</div>
+          <div class="valor">{{data.id.out_read_data_1}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_read_data_2:</div>
+          <div class="valor">{{data.id.out_read_data_2}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_id_sign:</div>
+          <div class="valor">{{data.id.out_id_sign}}</div>
+        </div> -->
+
+
+
+        <div class="dato">
+          <div class="var">registros:</div>
+          <div class="valor" ng-repeat="r in data.id.regs track by $index">{{$index+": "+r}}</div>
+        </div>
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna ex">
+        <div class="etapa">EX</div>
+
+        <div class="dato">
+          <div class="var">in_ex_opcode:</div>
+          <div class="valor noenter">{{data.idex.out_idex_opcode}}</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00000101">BNE</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00000100">BEQ</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00100011">LW</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00101011">SW</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00001000">ADDI</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00001100">ANDI</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00001101">ORI</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00001110">XORI</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00001111">LUI</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00001010">SLTI</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00000010">J</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00000011">JAL</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00000000">Type-R</div>
+          <div class="etiqueta noenter" ng-if="data.idex.out_idex_opcode==00111111">HLT</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">inA_Alu_Branch:</div>
+          <div class="valor">{{data.ex.inA_Alu_Branch}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">inB_Branch:</div>
+          <div class="valor">{{data.ex.inB_Branch}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">taken:</div>
+          <div class="valor">{{data.ex.taken}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">pc_branch:</div>
+          <div class="valor">{{data.id.pc_branch}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">inB_Alu:</div>
+          <div class="valor">{{data.ex.inB_Alu}}</div>
+        </div>
+
+
+        <!-- <div class="dato">
+          <div class="var">out_alu_result:</div>
+          <div class="valor">{{data.ex.out_alu_result}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_ex_read_data_2:</div>
+          <div class="valor">{{data.ex.out_ex_read_data_2}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_ex_write_register:</div>
+          <div class="valor">{{data.ex.out_ex_write_register}}</div>
+        </div> -->
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna mem">
+
+        <div class="etapa">MEM</div>
+
+        <!-- <div class="dato">
+          <div class="var">out_mem_alu_result:</div>
+          <div class="valor">{{data.mem.out_mem_alu_result}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_read_data:</div>
+          <div class="valor">{{data.mem.out_read_data}}</div>
+        </div>
+
+        <div class="dato">
+          <div class="var">out_mem_write_register:</div>
+          <div class="valor">{{data.mem.out_mem_write_register}}</div>
+        </div> -->
+
+        <div class="dato">
+          <div class="var">memoria_ram:</div>
+          <div class="valor" ng-repeat="r in data.mem.memoria_ram track by $index">{{$index+": "+r}}</div>
+        </div>
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+      <div class="columna wb">
+        <div class="etapa">WB</div>
+
+        <!-- <div class="dato">
+          <div class="var">out_wb_mux:</div>
+          <div class="valor">{{data.wb.out_wb_mux}}</div>
+        </div> -->
+
+      </div>
+
+      <!-- _____________________________________________________________________ -->
+
+    </div>
+
+  </body>
+</html>
